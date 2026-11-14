@@ -24,11 +24,12 @@ Femto Physics is an open-source science and engineering platform creating univer
 
 | Episode | Title | Key Physics Focus | Status | Link |
 | :---: | :--- | :--- | :---: | :---: |
-| **01** | **How Nuclear Reactors Actually Work** | Thermal cross-sections, Doppler broadening, delayed neutron precursors | Live | [Read Notes](ep01-how-reactors-work.md) |
-| **02** | **The 0.65% Rule** | Delayed neutron fraction ($\beta = 0.0065$), prompt critical jump, point kinetics | Live | [Read Notes](ep02-the-0.65-percent-rule.md) |
-| **03** | **Why 2 kg of Uranium Won't Explode** | Critical mass, Fick's Law of diffusion, spherical Helmholtz buckling | Live | [Read Notes](ep03-why-2kg-wont-explode.md) |
-| **04** | **Nature's 2-Billion-Year Natural Reactor** | The 1972 French anomaly, Oklo Gabon 3.67% primordial enrichment, geysers | Live | [Read Notes](ep04-oklo-natural-reactor.md) |
-| **05** | **Fast Breeder Reactor Physics** | Breeding ratio ($BR > 1.0$), liquid sodium cooling, EBR-II loss-of-flow test | Mastered | [Read Notes](ep05-fast-breeder-reactors.md) |
+| **01** | **How Nuclear Reactors Actually Work** | Thermal cross-sections, Doppler broadening, delayed neutron precursors | Live | [Read Notes](ep01-how-reactors-work.md) • [Watch](https://youtu.be/kDhq8UxAiC4) |
+| **02** | **The 0.65% Rule** | Delayed neutron fraction ($\beta = 0.0065$), prompt critical jump, point kinetics | Live | [Read Notes](ep02-the-0.65-percent-rule.md) • [Watch](https://youtu.be/9nnHbUWPTpg) |
+| **03** | **Why 2 kg of Uranium Won't Explode** | Critical mass, Fick's Law of diffusion, spherical Helmholtz buckling | Live | [Read Notes](ep03-why-2kg-wont-explode.md) • [Watch](https://youtu.be/Vbffws45SBI) |
+| **04** | **Nature's 2-Billion-Year Natural Reactor** | The 1972 French anomaly, Oklo Gabon 3.67% primordial enrichment, geysers | Live | [Read Notes](ep04-oklo-natural-reactor.md) • [Watch](https://youtu.be/FxmxHrUERVw) |
+| **05** | **Fast Breeder Reactor Physics** | Breeding ratio ($BR > 1.0$), liquid sodium cooling, EBR-II passive safety | Live | [Read Notes](ep05-fast-breeder-reactors.md) • [Watch](https://youtu.be/rgPuJdilhgs) |
+| **Short 01** | **The French Military's 200kg Uranium Mystery** | Oklo discovery anomaly, Pierrelatte mass spectrometry | Live | [Read Notes](short01-french-mystery.md) • [Watch](https://youtube.com/shorts/90WGyd0FVlM) |
 
 ---
 
