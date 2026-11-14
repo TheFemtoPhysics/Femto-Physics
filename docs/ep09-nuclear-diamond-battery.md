@@ -14,7 +14,7 @@
   <div style="position: absolute; top:0; left:0; width:100%; height:100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle at center, #0f172a 0%, #060911 100%);">
     <div style="font-size: 3.5rem; color: #00e5ff; margin-bottom: 12px;">💎</div>
     <div style="font-size: 1.3rem; font-weight: 700; color: #f8fafc; text-align: center; padding: 0 20px;">Episode 9: The 28,000-Year Diamond Battery</div>
-    <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 6px;">C-14 Betavoltaics • Wide-Bandgap Semiconductors • Deep Space Power</div>
+    <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 6px;">C-14 Betavoltaics • Wide-Bandgap Semiconductors • Betavolt BV100 • Arkenlight</div>
   </div>
 </div>
 
@@ -63,7 +63,26 @@ This allows diamond betavoltaic cells to achieve theoretical power conversion ef
 
 ---
 
-## 🚀 Engineering Applications & Commercial Horizon
-- **Deep Space Probes:** Powering micro-sensors and deep-space beacon transmitters beyond Pluto and the Oort cloud where solar flux is negligible.
-- **Biomedical Implants:** Pacemakers, retinal implants, and neural interfaces that outlast the human recipient without surgical battery replacements.
-- **Decommissioning Nuclear Graphite:** Transforming thousands of tons of radioactive reactor moderator graphite (from Magnox and RBMK reactors) into high-value clean energy infrastructure.
+## ⚡ Cutting-Edge 2024–2026 Commercial Breakthroughs
+
+### 1. Betavolt BV100 (Beijing, China)
+- **Form Factor:** Coin-sized miniature module ($15 \times 15 \times 5\text{ mm}$).
+- **Architecture:** Nickel-63 ($^{63}\text{Ni}$) foils ($2\ \mu\text{m}$) interleaved between $10\ \mu\text{m}$ single-crystal diamond semiconductor wafers.
+- **Output:** 100 microwatts at $3.0\text{ V}$ continuous electrical power.
+- **Safety Profile:** Operates from $-60^\circ\text{C}$ to $+120^\circ\text{C}$ with zero thermal runaway, fire, or explosion hazard under physical puncture. Decays into stable, non-radioactive Copper-63.
+
+### 2. Arkenlight & The IAEA 2025 Innovation Award (UK)
+- **Breakthrough:** Spun out of the University of Bristol diamond device team, Arkenlight synthesized the world's first physical Carbon-14 diamond diode.
+- **In-Situ Deployment:** Deployed autonomous diamond radiation sensors directly into the active core of the decommissioned Trawsfynydd Magnox nuclear reactor in North Wales, winning the **IAEA 2025 ISOP Innovation Award**.
+
+### 3. NASA Lunar Night & Interstellar Exploration
+- **Challenge:** Lunar nights last 354 hours (~14.7 Earth days) at temperatures below $-130^\circ\text{C}$ where solar panels generate 0 watts and chemical batteries freeze.
+- **Solution:** Self-heating diamond betavoltaic cells provide uninterrupted telemetry, keeping seismic monitors and radio beacons alive indefinitely.
+
+| Parameter | Betavolt BV100 | Arkenlight C-14 Diamond | Conventional Li-Ion |
+| :--- | :--- | :--- | :--- |
+| **Isotope** | Nickel-63 ($^{63}\text{Ni}$) | Carbon-14 ($^{14}\text{C}$) | None (Chemical) |
+| **Half-Life** | $100.1\text{ years}$ | $5,730\text{ years}$ | N/A ($3-5\text{ years}$) |
+| **Useful Lifespan** | $50\text{ years}$ | $28,000\text{ years}$ | $3-5\text{ years}$ |
+| **Temperature Range** | $-60^\circ\text{C} \text{ to } +120^\circ\text{C}$ | $-150^\circ\text{C} \text{ to } +250^\circ\text{C}$ | $-20^\circ\text{C} \text{ to } +60^\circ\text{C}$ |
+| **Radiation Leakage** | $0\ \mu\text{Sv/h}$ (Hermetic) | $0\ \mu\text{Sv/h}$ (Diamond cap) | Toxic electrolyte risk |
