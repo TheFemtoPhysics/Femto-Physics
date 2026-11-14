@@ -29,7 +29,7 @@ Femto Physics is an open-source science and engineering platform creating univer
 | **03** | **Why 2 kg of Uranium Won't Explode** | Critical mass, Fick's Law of diffusion, spherical Helmholtz buckling | Live | [Read Notes](ep03-why-2kg-wont-explode.md) • [Watch](https://youtu.be/Vbffws45SBI) |
 | **04** | **Nature's 2-Billion-Year Natural Reactor** | The 1972 French anomaly, Oklo Gabon 3.67% primordial enrichment, geysers | Live | [Read Notes](ep04-oklo-natural-reactor.md) • [Watch](https://youtu.be/FxmxHrUERVw) |
 | **05** | **Fast Breeder Reactor Physics** | Breeding ratio ($BR > 1.0$), liquid sodium cooling, EBR-II passive safety | Live | [Read Notes](ep05-fast-breeder-reactors.md) • [Watch](https://youtu.be/rgPuJdilhgs) |
-| **06** | **The 2.6-Million-Barn Poison (Chernobyl)** | Xenon-135 resonance, coupled Bateman kinetics, positive void feedback | Master Ready | [Read Notes](ep06-the-xenon-pit.md) • [Watch (@FemtoPhysics)](https://www.youtube.com/@FemtoPhysics) |
+| **06** | **Why Chernobyl Exploded: The 2.6M Barn Xenon Trap** | Xenon-135 resonance, coupled Bateman kinetics, positive void feedback | Live | [Read Notes](ep06-the-xenon-pit.md) • [Watch](https://youtu.be/bKB7p6MTshY) |
 | **Short 01** | **The French Military's 200kg Uranium Mystery** | Oklo discovery anomaly, Pierrelatte mass spectrometry | Live | [Read Notes](short01-french-mystery.md) • [Watch](https://youtube.com/shorts/90WGyd0FVlM) |
 
 ---

@@ -5,7 +5,7 @@
 </p>
 
 <p align="center">
-  <a class="yt-card" href="https://www.youtube.com/@FemtoPhysics" target="_blank">▶ Watch Full Episode on YouTube</a>
+  <a class="yt-card" href="https://youtu.be/bKB7p6MTshY" target="_blank">▶ Watch Full Episode on YouTube</a>
 </p>
 
 ---
