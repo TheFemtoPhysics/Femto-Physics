@@ -11,6 +11,7 @@
   * [Episode 5: Fast Breeder Reactors](ep05-fast-breeder-reactors.md)
   * [Episode 6: The Xenon Pit (Chernobyl)](ep06-the-xenon-pit.md)
   * [Episode 7: Project Orion (Nuclear Pulse)](ep07-project-orion.md)
+  * [Episode 8: Bill Gates' Natrium (Liquid Metal & AI)](ep08-terrapower-natrium.md)
 
 * **⚡ YouTube Shorts**
   * [Short 1: 1972 French Uranium Mystery](short01-french-mystery.md)
