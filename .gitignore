@@ -1,0 +1,22 @@
+# Confidential Environment Variables
+.env
+*.local
+*.secret
+secrets/
+
+# Large binaries & media files
+*.mp4
+*.webm
+*.ogv
+*.wav
+*.mp3
+*.zip
+*.tar.gz
+
+# Python & System Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.DS_Store
+Thumbs.db
