@@ -1,5 +1,26 @@
 # Episode 08: Bill Gates' Natrium — Liquid Metal Reactors & The AI Energy Boom
 
+
+<div style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid #00e5ff; border-radius: 12px; padding: 20px; margin: 25px 0; box-shadow: 0 8px 24px rgba(0, 229, 255, 0.15);">
+  <h3 style="color: #00e5ff; margin-top: 0; display: flex; align-items: center; gap: 8px;">🧠 Interactive Knowledge Check (Pop Quiz #08)</h3>
+  <p style="font-size: 1.1em; color: #f8fafc; font-weight: 600;">Why can Bill Gates' Natrium reactor operate at 500°C at normal atmospheric pressure (1 atm), while standard water reactors must operate at 155 atmospheres?</p>
+  <ul style="list-style-type: none; padding-left: 0; margin: 15px 0;">
+    <li style='padding: 8px 12px; margin-bottom: 6px; background: rgba(30, 41, 59, 0.6); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);'>[A] Elemental sodium has an 883°C boiling point and 100x higher thermal conductivity ✅</li>
+    <li style='padding: 8px 12px; margin-bottom: 6px; background: rgba(30, 41, 59, 0.6); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);'>[B] Liquid sodium freezes under high pressure</li>
+    <li style='padding: 8px 12px; margin-bottom: 6px; background: rgba(30, 41, 59, 0.6); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);'>[C] Natrium reactors operate in a total vacuum</li>
+    <li style='padding: 8px 12px; margin-bottom: 6px; background: rgba(30, 41, 59, 0.6); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);'>[D] Light water is too heavy to circulate at high temperatures</li>
+  </ul>
+  <details style="margin-top: 12px; cursor: pointer; background: rgba(2, 132, 199, 0.15); border-left: 4px solid #38bdf8; padding: 10px 15px; border-radius: 4px;">
+    <summary style="color: #ffd54f; font-weight: bold; outline: none;">💡 Reveal Detailed Scientific Explanation & Timestamp</summary>
+    <p style="margin-top: 10px; color: #e2e8f0; font-size: 0.95em; line-height: 1.6;">
+      <strong>Explanation:</strong> Elemental sodium boils at 883°C at 1 atm, providing an immense 383°C safety buffer without needing 12-inch forged steel pressure vessels!<br>
+      <strong>Video Timestamp:</strong> Check <code>[07:37]</code> in the video for the mathematical derivation!
+    </p>
+  </details>
+</div>
+
+---
+
 > **A Masterclass on Fast Neutron Spectrum Physics, Liquid Sodium Thermal Hydraulics, Gigawatt-Scale Molten Salt Thermal Storage, and HALEU Fuel Geopolitics.**
 
 ---

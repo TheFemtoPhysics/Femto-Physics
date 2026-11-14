@@ -1,5 +1,26 @@
 # 🚀 Episode 07: Project Orion: How to Propel a 4,000-Ton Spacecraft with Nuclear Bombs
 
+
+<div style="background: rgba(15, 23, 42, 0.85); border: 1.5px solid #00e5ff; border-radius: 12px; padding: 20px; margin: 25px 0; box-shadow: 0 8px 24px rgba(0, 229, 255, 0.15);">
+  <h3 style="color: #00e5ff; margin-top: 0; display: flex; align-items: center; gap: 8px;">🧠 Interactive Knowledge Check (Pop Quiz #07)</h3>
+  <p style="font-size: 1.1em; color: #f8fafc; font-weight: 600;">When a nuclear bomb detonated 30 meters behind the 4,000-ton Orion spacecraft, how did the steel pusher plate survive the 1,000,000 K plasma fireball without vaporizing?</p>
+  <ul style="list-style-type: none; padding-left: 0; margin: 15px 0;">
+    <li style='padding: 8px 12px; margin-bottom: 6px; background: rgba(30, 41, 59, 0.6); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);'>[A] The plate was refrigerated with liquid helium</li>
+    <li style='padding: 8px 12px; margin-bottom: 6px; background: rgba(30, 41, 59, 0.6); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);'>[B] The blast was magnetic and contained no heat</li>
+    <li style='padding: 8px 12px; margin-bottom: 6px; background: rgba(30, 41, 59, 0.6); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);'>[C] A microscopic oil spray flash-ablated into a protective Leidenfrost gas cushion ✅</li>
+    <li style='padding: 8px 12px; margin-bottom: 6px; background: rgba(30, 41, 59, 0.6); border-radius: 6px; border: 1px solid rgba(255,255,255,0.08);'>[D] The ship moved away at the speed of light</li>
+  </ul>
+  <details style="margin-top: 12px; cursor: pointer; background: rgba(2, 132, 199, 0.15); border-left: 4px solid #38bdf8; padding: 10px 15px; border-radius: 4px;">
+    <summary style="color: #ffd54f; font-weight: bold; outline: none;">💡 Reveal Detailed Scientific Explanation & Timestamp</summary>
+    <p style="margin-top: 10px; color: #e2e8f0; font-size: 0.95em; line-height: 1.6;">
+      <strong>Explanation:</strong> Leidenfrost oil ablation! A thin film of silicone oil flash-ablated into an opaque, high-density stagnation layer that insulated the steel plate.<br>
+      <strong>Video Timestamp:</strong> Check <code>[03:22]</code> in the video for the mathematical derivation!
+    </p>
+  </details>
+</div>
+
+---
+
 <p align="center">
   <img src="img/ep07_thumb.jpg" alt="Episode 7 Thumbnail: Project Orion" width="100%">
 </p>
