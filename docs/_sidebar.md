@@ -3,6 +3,9 @@
 * **[🏠 Home / Channel Overview](README.md)**
 * **[👤 Producer & Production Team](producer.md)**
 
+* **⚛️ Interactive Simulations**
+  * [3D Nuclear Core Simulator](simulator.md)
+
 * **📚 Episode Masterclass Notes**
   * [Episode 1: How Reactors Work](ep01-how-reactors-work.md)
   * [Episode 2: The 0.65% Rule](ep02-the-0.65-percent-rule.md)
@@ -12,9 +15,14 @@
   * [Episode 6: The Xenon Pit (Chernobyl)](ep06-the-xenon-pit.md)
   * [Episode 7: Project Orion (Nuclear Pulse)](ep07-project-orion.md)
   * [Episode 8: Bill Gates' Natrium (Liquid Metal & AI)](ep08-terrapower-natrium.md)
+  * [Episode 9: Nuclear Diamond Batteries](ep09-nuclear-diamond-battery.md)
+  * [Episode 10: Fusion Ignition ($Q > 1$)](ep10-fusion-ignition-net-gain.md)
 
 * **⚡ YouTube Shorts**
   * [Short 1: 1972 French Uranium Mystery](short01-french-mystery.md)
+
+* **📄 Open-Source Research Papers**
+  * [Download LaTeX & PDF Preprints](papers/README.md)
 
 * **🤝 Community & Collaboration**
   * [Propose Episode Ideas / PRs](contributing.md)

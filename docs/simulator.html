@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Femto Physics — Interactive 3D Nuclear Core Simulator</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+    }
+    body {
+      background-color: #060911;
+      color: #e2e8f0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, monospace;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+    }
+    #canvas-container {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+    }
+    /* Glassmorphism HUD Overlay */
+    .hud {
+      position: absolute;
+      z-index: 10;
+      pointer-events: none;
+    }
+    .hud-card {
+      background: rgba(13, 19, 31, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(0, 229, 255, 0.25);
+      border-radius: 12px;
+      padding: 16px 20px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6), 0 0 15px rgba(0, 229, 255, 0.1);
+      pointer-events: auto;
+    }
+    /* Top Header */
+    #header-panel {
+      top: 16px;
+      left: 16px;
+      max-width: 420px;
+    }
+    #header-panel h1 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #00e5ff;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    #header-panel p {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      margin-top: 4px;
+    }
+    /* Reactor Telemetry Panel */
+    #telemetry-panel {
+      top: 16px;
+      right: 16px;
+      min-width: 280px;
+    }
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 8px 0;
+      font-size: 0.82rem;
+    }
+    .stat-label {
+      color: #94a3b8;
+    }
+    .stat-val {
+      font-family: 'Courier New', Courier, monospace;
+      font-weight: 700;
+      color: #f8fafc;
+    }
+    .badge {
+      display: inline-block;
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+    .badge-subcritical { background: rgba(59, 130, 246, 0.25); color: #60a5fa; border: 1px solid #3b82f6; }
+    .badge-critical { background: rgba(16, 185, 129, 0.25); color: #34d399; border: 1px solid #10b981; }
+    .badge-prompt { background: rgba(239, 68, 68, 0.3); color: #f87171; border: 1px solid #ef4444; animation: pulse 1s infinite; }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.7; transform: scale(1.03); }
+    }
+    /* Controls Panel */
+    #controls-panel {
+      bottom: 16px;
+      left: 16px;
+      width: 360px;
+    }
+    .control-group {
+      margin-top: 12px;
+    }
+    .control-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      color: #cbd5e1;
+      margin-bottom: 4px;
+    }
+    input[type=range] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      background: #1e293b;
+      border-radius: 3px;
+      outline: none;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #00e5ff;
+      cursor: pointer;
+      box-shadow: 0 0 10px #00e5ff;
+    }
+    /* Scram Button */
+    .btn-scram {
+      width: 100%;
+      margin-top: 14px;
+      padding: 10px 0;
+      background: linear-gradient(135deg, #dc2626, #991b1b);
+      color: #ffffff;
+      border: 1px solid #ef4444;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 0.85rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(220, 38, 38, 0.4);
+      transition: all 0.2s ease;
+    }
+    .btn-scram:hover {
+      background: linear-gradient(135deg, #ef4444, #b91c1c);
+      box-shadow: 0 0 20px rgba(239, 68, 68, 0.8);
+      transform: translateY(-1px);
+    }
+    /* Strip Chart Canvas */
+    #chart-panel {
+      bottom: 16px;
+      right: 16px;
+      width: 300px;
+      height: 130px;
+    }
+    #chart-panel h3 {
+      font-size: 0.75rem;
+      color: #94a3b8;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    #strip-chart {
+      width: 100%;
+      height: 85px;
+      background: #090d16;
+      border-radius: 6px;
+      border: 1px solid #1e293b;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+<body>
+  <div id="canvas-container"></div>
+
+  <!-- Header -->
+  <div class="hud" id="header-panel">
+    <div class="hud-card">
+      <h1>⚛️ Femto Physics Reactor Lab</h1>
+      <p>3D Nuclear Core Simulation • Doppler Feedback & Delayed Neutrons</p>
+    </div>
+  </div>
+
+  <!-- Telemetry -->
+  <div class="hud" id="telemetry-panel">
+    <div class="hud-card">
+      <div class="stat-row">
+        <span class="stat-label">Core State</span>
+        <span id="core-state-badge" class="badge badge-critical">CRITICAL (k=1.000)</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Multiplication (k_eff)</span>
+        <span class="stat-val" id="val-keff">1.0000</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Thermal Power</span>
+        <span class="stat-val" id="val-power" style="color: #00e5ff;">1,000 MWth</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Fuel Temperature</span>
+        <span class="stat-val" id="val-temp" style="color: #f59e0b;">560.0 °C</span>
+      </div>
+      <div class="stat-row">
+        <span class="stat-label">Cherenkov Intensity</span>
+        <span class="stat-val" id="val-cherenkov" style="color: #38bdf8;">100%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Controls -->
+  <div class="hud" id="controls-panel">
+    <div class="hud-card">
+      <div style="font-size: 0.85rem; font-weight: 700; color: #00e5ff; text-transform: uppercase;">Core Controls</div>
+      
+      <div class="control-group">
+        <div class="control-label">
+          <span>Control Rod Insertion</span>
+          <span id="label-rods">50.0%</span>
+        </div>
+        <input type="range" id="slider-rods" min="0" max="100" value="50" step="0.5">
+      </div>
+
+      <div class="control-group">
+        <div class="control-label">
+          <span>Coolant Flow Rate</span>
+          <span id="label-flow">100%</span>
+        </div>
+        <input type="range" id="slider-flow" min="20" max="150" value="100" step="1">
+      </div>
+
+      <button class="btn-scram" id="btn-scram">EMERGENCY SCRAM (TRIP)</button>
+    </div>
+  </div>
+
+  <!-- Strip Chart -->
+  <div class="hud" id="chart-panel">
+    <div class="hud-card">
+      <h3>Thermal Power (MWth) vs Time</h3>
+      <canvas id="strip-chart" width="260" height="85"></canvas>
+    </div>
+  </div>
+
+  <script>
+    // --- THREE.JS SCENE SETUP ---
+    const container = document.getElementById('canvas-container');
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x060911, 0.035);
+
+    const camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+    camera.position.set(0, 7, 12);
+    camera.lookAt(0, 0, 0);
+
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setClearColor(0x060911, 1);
+    container.appendChild(renderer.domElement);
+
+    // --- LIGHTING ---
+    const ambientLight = new THREE.AmbientLight(0x0f172a, 1.2);
+    scene.add(ambientLight);
+
+    const cherenkovLight = new THREE.PointLight(0x00d4ff, 3.5, 18);
+    cherenkovLight.position.set(0, 0, 0);
+    scene.add(cherenkovLight);
+
+    const topWhiteLight = new THREE.DirectionalLight(0xffffff, 0.8);
+    topWhiteLight.position.set(5, 15, 8);
+    scene.add(topWhiteLight);
+
+    // --- REACTOR CORE MESHES ---
+    // Pressure Vessel / Outer Tank
+    const vesselGeo = new THREE.CylinderGeometry(4.2, 4.2, 7, 32, 1, true);
+    const vesselMat = new THREE.MeshStandardMaterial({
+      color: 0x1e293b,
+      roughness: 0.4,
+      metalness: 0.8,
+      side: THREE.DoubleSide,
+      transparent: true,
+      opacity: 0.4
+    });
+    const vessel = new THREE.Mesh(vesselGeo, vesselMat);
+    scene.add(vessel);
+
+    // Water pool base
+    const waterBaseGeo = new THREE.CylinderGeometry(4.1, 4.1, 0.5, 32);
+    const waterBaseMat = new THREE.MeshStandardMaterial({
+      color: 0x032541,
+      roughness: 0.2,
+      metalness: 0.5
+    });
+    const waterBase = new THREE.Mesh(waterBaseGeo, waterBaseMat);
+    waterBase.position.y = -3.25;
+    scene.add(waterBase);
+
+    // Fuel Pins Array (Hexagonal/Grid Pattern)
+    const pinGroup = new THREE.Group();
+    const pinGeo = new THREE.CylinderGeometry(0.09, 0.09, 4.2, 16);
+    const pinMat = new THREE.MeshStandardMaterial({
+      color: 0x64748b,
+      metalness: 0.85,
+      roughness: 0.3
+    });
+
+    const PINS_PER_SIDE = 9;
+    const SPACING = 0.42;
+    const pinMeshes = [];
+
+    for (let x = -PINS_PER_SIDE / 2; x <= PINS_PER_SIDE / 2; x++) {
+      for (let z = -PINS_PER_SIDE / 2; z <= PINS_PER_SIDE / 2; z++) {
+        const dist = Math.sqrt(x * x + z * z);
+        if (dist <= (PINS_PER_SIDE / 2) * 0.95) {
+          const pin = new THREE.Mesh(pinGeo, pinMat.clone());
+          pin.position.set(x * SPACING, -0.6, z * SPACING);
+          pinGroup.add(pin);
+          pinMeshes.push(pin);
+        }
+      }
+    }
+    scene.add(pinGroup);
+
+    // Control Rods Group
+    const rodGroup = new THREE.Group();
+    const rodGeo = new THREE.CylinderGeometry(0.08, 0.08, 4.5, 16);
+    const rodMat = new THREE.MeshStandardMaterial({
+      color: 0x111827,
+      metalness: 0.9,
+      roughness: 0.1
+    });
+
+    const rodMeshes = [];
+    for (let x = -PINS_PER_SIDE / 2; x <= PINS_PER_SIDE / 2; x += 2) {
+      for (let z = -PINS_PER_SIDE / 2; z <= PINS_PER_SIDE / 2; z += 2) {
+        const dist = Math.sqrt(x * x + z * z);
+        if (dist <= (PINS_PER_SIDE / 2) * 0.85) {
+          const rod = new THREE.Mesh(rodGeo, rodMat);
+          rod.position.set(x * SPACING, 2.5, z * SPACING);
+          rodGroup.add(rod);
+          rodMeshes.push(rod);
+        }
+      }
+    }
+    scene.add(rodGroup);
+
+    // Cherenkov Core Glow Sphere
+    const glowGeo = new THREE.SphereGeometry(2.5, 32, 32);
+    const glowMat = new THREE.MeshBasicMaterial({
+      color: 0x00d4ff,
+      transparent: true,
+      opacity: 0.25,
+      wireframe: false
+    });
+    const glowMesh = new THREE.Mesh(glowGeo, glowMat);
+    glowMesh.position.y = -0.6;
+    scene.add(glowMesh);
+
+    // Neutron Particle System
+    const PARTICLE_COUNT = 300;
+    const particleGeo = new THREE.BufferGeometry();
+    const particlePositions = new Float32Array(PARTICLE_COUNT * 3);
+    const particleVelocities = [];
+
+    for (let i = 0; i < PARTICLE_COUNT; i++) {
+      particlePositions[i * 3 + 0] = (Math.random() - 0.5) * 3.2;
+      particlePositions[i * 3 + 1] = (Math.random() - 0.5) * 3.5 - 0.6;
+      particlePositions[i * 3 + 2] = (Math.random() - 0.5) * 3.2;
+
+      particleVelocities.push(new THREE.Vector3(
+        (Math.random() - 0.5) * 0.08,
+        (Math.random() - 0.5) * 0.08,
+        (Math.random() - 0.5) * 0.08
+      ));
+    }
+    particleGeo.setAttribute('position', new THREE.BufferAttribute(particlePositions, 3));
+
+    const particleMat = new THREE.PointsMaterial({
+      color: 0x38bdf8,
+      size: 0.12,
+      transparent: true,
+      opacity: 0.85,
+      blending: THREE.AdditiveBlending
+    });
+    const particleSystem = new THREE.Points(particleGeo, particleMat);
+    scene.add(particleSystem);
+
+    // --- REACTOR PHYSICS ENGINE ---
+    let rodInsertion = 0.50; // 50%
+    let coolantFlow = 1.0;   // 100%
+    let power = 1000.0;      // MWth
+    let fuelTemp = 560.0;    // °C
+    let targetTemp = 560.0;
+    let k_eff = 1.0000;
+    const beta = 0.0065;     // Delayed neutron fraction
+    const dopplerCoeff = -0.000045; // Negative Doppler reactivity per °C
+
+    // Strip Chart History
+    const chartCanvas = document.getElementById('strip-chart');
+    const chartCtx = chartCanvas.getContext('2d');
+    const powerHistory = new Array(60).fill(1000);
+
+    // --- DOM EVENT LISTENERS ---
+    const sliderRods = document.getElementById('slider-rods');
+    const labelRods = document.getElementById('label-rods');
+    const sliderFlow = document.getElementById('slider-flow');
+    const labelFlow = document.getElementById('label-flow');
+    const btnScram = document.getElementById('btn-scram');
+
+    sliderRods.addEventListener('input', (e) => {
+      rodInsertion = parseFloat(e.target.value) / 100;
+      labelRods.textContent = (rodInsertion * 100).toFixed(1) + '%';
+    });
+
+    sliderFlow.addEventListener('input', (e) => {
+      coolantFlow = parseFloat(e.target.value) / 100;
+      labelFlow.textContent = (coolantFlow * 100).toFixed(0) + '%';
+    });
+
+    btnScram.addEventListener('click', () => {
+      rodInsertion = 1.0;
+      sliderRods.value = 100;
+      labelRods.textContent = '100.0%';
+    });
+
+    // Mouse drag rotation
+    let isDragging = false;
+    let prevMouseX = 0;
+    let prevMouseY = 0;
+    let coreRotationY = 0;
+
+    window.addEventListener('mousedown', (e) => {
+      isDragging = true;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+    });
+
+    window.addEventListener('mouseup', () => isDragging = false);
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      const deltaX = e.clientX - prevMouseX;
+      coreRotationY += deltaX * 0.005;
+      prevMouseX = e.clientX;
+      prevMouseY = e.clientY;
+    });
+
+    window.addEventListener('resize', () => {
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    });
+
+    // --- ANIMATION & PHYSICS LOOP ---
+    let lastChartUpdate = Date.now();
+
+    function updatePhysics() {
+      // Base reactivity from control rods: at 50% insertion, delta_rho_rods = 0
+      const rho_rods = (0.50 - rodInsertion) * 0.025;
+      
+      // Doppler reactivity from fuel temperature
+      const deltaT = fuelTemp - 560.0;
+      const rho_doppler = deltaT * dopplerCoeff;
+
+      // Net reactivity rho
+      const rho_net = rho_rods + rho_doppler;
+      k_eff = 1.0 / (1.0 - rho_net);
+
+      // Power rate of change: Point Kinetics (with delayed neutron damping)
+      // dP/dt = ((rho_net - beta)/Lambda)*P + lambda*C
+      const promptJump = (rho_net / beta);
+      const targetPower = Math.max(10, power * (1 + promptJump * 0.08));
+      power += (targetPower - power) * 0.05;
+
+      // Thermal equilibrium: Heat produced vs Heat removed by coolant flow
+      targetTemp = 300.0 + (power / (1000.0 * coolantFlow)) * 260.0;
+      fuelTemp += (targetTemp - fuelTemp) * 0.04;
+
+      // Update UI Telemetry
+      document.getElementById('val-keff').textContent = k_eff.toFixed(4);
+      document.getElementById('val-power').textContent = Math.round(power).toLocaleString() + ' MWth';
+      document.getElementById('val-temp').textContent = fuelTemp.toFixed(1) + ' °C';
+
+      const cherenkovRatio = Math.min(2.5, power / 1000.0);
+      document.getElementById('val-cherenkov').textContent = Math.round(cherenkovRatio * 100) + '%';
+
+      // Badge update
+      const badge = document.getElementById('core-state-badge');
+      if (k_eff > 1.0065) {
+        badge.className = 'badge badge-prompt';
+        badge.textContent = 'PROMPT CRITICAL (k=' + k_eff.toFixed(4) + ')';
+      } else if (k_eff >= 0.999 && k_eff <= 1.0065) {
+        badge.className = 'badge badge-critical';
+        badge.textContent = 'CRITICAL (k=' + k_eff.toFixed(4) + ')';
+      } else {
+        badge.className = 'badge badge-subcritical';
+        badge.textContent = 'SUBCRITICAL (k=' + k_eff.toFixed(4) + ')';
+      }
+
+      // 3D Scene updates
+      // Control rods vertical position: 0% inserted -> y = 3.5, 100% inserted -> y = -0.6
+      rodGroup.position.y = 3.5 - rodInsertion * 4.1;
+
+      // Dynamic Cherenkov Glow
+      cherenkovLight.intensity = cherenkovRatio * 3.5;
+      glowMat.opacity = Math.min(0.65, 0.12 * cherenkovRatio);
+      glowMesh.scale.setScalar(1.0 + Math.sin(Date.now() * 0.003) * 0.05 * cherenkovRatio);
+
+      // Fuel pin heat glow
+      const heatFactor = Math.min(1.0, Math.max(0, (fuelTemp - 400) / 600));
+      pinMat.color.setRGB(0.39 + heatFactor * 0.5, 0.45 - heatFactor * 0.2, 0.55 - heatFactor * 0.4);
+
+      // Chart update every 250ms
+      if (Date.now() - lastChartUpdate > 250) {
+        powerHistory.shift();
+        powerHistory.push(power);
+        drawStripChart();
+        lastChartUpdate = Date.now();
+      }
+    }
+
+    function drawStripChart() {
+      chartCtx.clearRect(0, 0, chartCanvas.width, chartCanvas.height);
+      chartCtx.strokeStyle = '#00e5ff';
+      chartCtx.lineWidth = 1.5;
+      chartCtx.beginPath();
+
+      const maxVal = Math.max(2500, ...powerHistory);
+      for (let i = 0; i < powerHistory.length; i++) {
+        const x = (i / (powerHistory.length - 1)) * chartCanvas.width;
+        const y = chartCanvas.height - (powerHistory[i] / maxVal) * (chartCanvas.height - 10) - 5;
+        if (i === 0) chartCtx.moveTo(x, y);
+        else chartCtx.lineTo(x, y);
+      }
+      chartCtx.stroke();
+    }
+
+    function animate() {
+      requestAnimationFrame(animate);
+
+      updatePhysics();
+
+      // Smooth slow rotation + user drag
+      scene.rotation.y = coreRotationY;
+      coreRotationY += 0.0015;
+
+      // Neutron particles simulation
+      const positions = particleGeo.attributes.position.array;
+      const speedMult = Math.min(3.0, power / 1000.0);
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        positions[i * 3 + 0] += particleVelocities[i].x * speedMult;
+        positions[i * 3 + 1] += particleVelocities[i].y * speedMult;
+        positions[i * 3 + 2] += particleVelocities[i].z * speedMult;
+
+        // Bounce inside core boundaries
+        if (Math.abs(positions[i * 3 + 0]) > 1.8) particleVelocities[i].x *= -1;
+        if (positions[i * 3 + 1] < -2.5 || positions[i * 3 + 1] > 1.3) particleVelocities[i].y *= -1;
+        if (Math.abs(positions[i * 3 + 2]) > 1.8) particleVelocities[i].z *= -1;
+      }
+      particleGeo.attributes.position.needsUpdate = true;
+
+      renderer.render(scene, camera);
+    }
+
+    animate();
+  </script>
+</body>
+</html>
