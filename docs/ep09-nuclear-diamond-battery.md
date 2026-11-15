@@ -10,13 +10,12 @@
 
 ## 📺 Video Overview & Concept
 
-<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 12px; margin: 20px 0; box-shadow: 0 8px 30px rgba(0,0,0,0.5); border: 1px solid #1e293b;">
-  <div style="position: absolute; top:0; left:0; width:100%; height:100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: radial-gradient(circle at center, #0f172a 0%, #060911 100%);">
-    <div style="font-size: 3.5rem; color: #00e5ff; margin-bottom: 12px;">💎</div>
-    <div style="font-size: 1.3rem; font-weight: 700; color: #f8fafc; text-align: center; padding: 0 20px;">Episode 9: The 28,000-Year Diamond Battery</div>
-    <div style="font-size: 0.85rem; color: #94a3b8; margin-top: 6px;">C-14 Betavoltaics • Wide-Bandgap Semiconductors • Betavolt BV100 • Arkenlight</div>
-  </div>
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; border-radius: 12px; margin: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
+  <iframe src="https://www.youtube-nocookie.com/embed/RBt6qcA-0Jw" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border:0;" allowfullscreen></iframe>
 </div>
+<p align="center">
+  <a class="yt-card" href="https://youtu.be/RBt6qcA-0Jw" target="_blank">▶ Watch Full Episode 9 on YouTube (Premiere: Nov 15, 6:30 PM IST)</a>
+</p>
 
 ---
 
