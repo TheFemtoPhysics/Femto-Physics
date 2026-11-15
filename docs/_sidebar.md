@@ -17,6 +17,8 @@
   * [Episode 8: Bill Gates' Natrium (Liquid Metal & AI)](ep08-terrapower-natrium.md)
   * [Episode 9: Nuclear Diamond Batteries](ep09-nuclear-diamond-battery.md)
   * [Episode 10: Fusion Ignition ($Q > 1$)](ep10-fusion-ignition-net-gain.md)
+  * [Episode 11: Thorium Molten Salt Reactor](ep11-thorium-molten-salt-reactor.md)
+  * [Episode 12: Direct Fusion Energy (Helion FRC)](ep12-direct-fusion-energy-helion.md)
 
 * **⚡ YouTube Shorts**
   * [Short 1: 1972 French Uranium Mystery](short01-french-mystery.md)
