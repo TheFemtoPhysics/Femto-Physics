@@ -29,3 +29,4 @@
 * **🤝 Community & Collaboration**
   * [Propose Episode Ideas / PRs](contributing.md)
   * [YouTube Channel [@FemtoPhysics](https://www.youtube.com/@FemtoPhysics)](https://www.youtube.com/@FemtoPhysics)
+  * [Episode 13: Strange Stars & Strangelets](ep13-strangelets-and-strange-stars.md)
