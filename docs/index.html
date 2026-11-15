@@ -7,68 +7,279 @@
   <meta name="description" content="Official documentation, equations, and simulation archives for Femto Physics YouTube channel.">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
   <link rel="icon" href="img/logo.png">
-  <!-- Theme: Dark Slate / Obsidian -->
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/dark.css">
+  
+  <!-- Base Theme Stylesheet -->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/dark.css" id="docsify-theme-link">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"/>
+  
   <style>
-    :root {
+    /* =========================================================
+       FEMTO PHYSICS DUAL PALETTE: BLUISH DARK & SOOTHING OFF-WHITE
+       ========================================================= */
+
+    /* 1. BLUISH DARK THEME (DEFAULT) */
+    :root, body.theme-dark {
       --theme-color: #00e5ff;
-      --text-color-base: #e2e8f0;
-      --background: #0a0e17;
-      --sidebar-background: #0d131f;
+      --bg-main: #0a0f1d;          /* Deep rich navy-slate, not pitch black */
+      --bg-sidebar: #0f172a;       /* Deep slate sidebar */
+      --bg-card: #131c31;          /* Card container */
+      --bg-card-alt: #0d1527;      /* Alternate row background */
+      --text-main: #f1f5f9;        /* Crisp off-white */
+      --text-muted: #94a3b8;       /* Slate muted text */
+      --border-color: #1e293b;     /* Border lines */
+      --th-bg: #0c1424;            /* Table header */
+      --th-text: #00e5ff;          /* Cherenkov cyan */
+      --link-watch: #facc15;       /* Bright golden amber */
+      --link-watch-bg: rgba(250, 204, 21, 0.12);
+      --link-watch-border: rgba(250, 204, 21, 0.35);
+      --link-notes: #38bdf8;       /* Cyan link */
+      --quote-bg: #0f1b33;
+      --quote-border: #00e5ff;
     }
+
+    /* 2. SOOTHING OFF-WHITE LIGHT THEME */
+    body.theme-light {
+      --theme-color: #0284c7;
+      --bg-main: #f8f9fa;          /* Warm soft pearl off-white, easy on the eyes */
+      --bg-sidebar: #edf2f7;       /* Soft cool slate sidebar */
+      --bg-card: #ffffff;          /* Pure white card */
+      --bg-card-alt: #f1f5f9;      /* Gentle light row */
+      --text-main: #1e293b;        /* Charcoal navy text */
+      --text-muted: #64748b;       /* Soft slate */
+      --border-color: #cbd5e1;     /* Light slate borders */
+      --th-bg: #e2e8f0;            /* Soft header */
+      --th-text: #0369a1;          /* Deep blue header text */
+      --link-watch: #b45309;       /* Deep amber */
+      --link-watch-bg: rgba(245, 158, 11, 0.15);
+      --link-watch-border: rgba(245, 158, 11, 0.4);
+      --link-notes: #0284c7;       /* Deep cyan link */
+      --quote-bg: #e0f2fe;
+      --quote-border: #0284c7;
+    }
+
+    /* GLOBAL RESETS & TYPOGRAPHY */
     body {
-      background-color: #0a0e17;
-      color: #e2e8f0;
+      background-color: var(--bg-main) !important;
+      color: var(--text-main) !important;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      transition: background-color 0.25s ease, color 0.25s ease;
     }
+
+    .content, main {
+      background-color: var(--bg-main) !important;
+    }
+
+    /* SIDEBAR */
     .sidebar {
-      background-color: #0d131f;
-      border-right: 1px solid #1e293b;
+      background-color: var(--bg-sidebar) !important;
+      border-right: 1px solid var(--border-color) !important;
+      transition: background-color 0.25s ease;
     }
     .sidebar-nav a {
-      color: #94a3b8;
+      color: var(--text-muted) !important;
+      font-size: 0.95rem;
     }
     .sidebar-nav a:hover, .sidebar-nav li.active > a {
-      color: #00e5ff;
-      font-weight: bold;
+      color: var(--theme-color) !important;
+      font-weight: 700;
     }
+
+    /* HEADINGS */
     .markdown-section h1, .markdown-section h2, .markdown-section h3 {
-      color: #00e5ff;
+      color: var(--theme-color) !important;
+      font-weight: 700;
     }
-    .markdown-section a {
-      color: #ffd54f;
-      font-weight: 600;
-      text-decoration: underline;
-    }
+
+    /* BLOCKQUOTES & CODE */
     .markdown-section blockquote {
-      border-left: 4px solid #00e5ff;
-      background: #0f172a;
-      padding: 12px 18px;
+      border-left: 4px solid var(--quote-border) !important;
+      background: var(--quote-bg) !important;
+      color: var(--text-main) !important;
+      padding: 14px 20px !important;
+      border-radius: 6px;
+      margin: 20px 0;
     }
     .markdown-section pre {
-      background: #0d131f !important;
-      border: 1px solid #1e293b;
+      background: var(--bg-sidebar) !important;
+      border: 1px solid var(--border-color) !important;
+      border-radius: 8px;
     }
+
+    /* =========================================================
+       HIGH-CONTRAST PROFESSIONAL TABLE OVERRIDES (NO MORE UNREADABLE ROWS)
+       ========================================================= */
+    .markdown-section table {
+      border-collapse: separate !important;
+      border-spacing: 0 !important;
+      width: 100% !important;
+      margin: 25px 0 !important;
+      border-radius: 10px !important;
+      overflow: hidden !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25) !important;
+      border: 1px solid var(--border-color) !important;
+      background-color: var(--bg-card) !important;
+      display: table !important;
+    }
+
+    /* TABLE HEADERS */
+    .markdown-section table th {
+      background-color: var(--th-bg) !important;
+      color: var(--th-text) !important;
+      font-weight: 800 !important;
+      padding: 14px 18px !important;
+      text-transform: uppercase !important;
+      font-size: 0.85rem !important;
+      letter-spacing: 0.05em !important;
+      border: none !important;
+      border-bottom: 2px solid var(--theme-color) !important;
+      text-align: left !important;
+    }
+
+    /* TABLE ROWS (ALTERNATING HIGH CONTRAST) */
+    .markdown-section table tr {
+      background-color: var(--bg-card) !important;
+      border-bottom: 1px solid var(--border-color) !important;
+      transition: background-color 0.15s ease;
+    }
+
+    .markdown-section table tr:nth-child(even),
+    .markdown-section table tr:nth-child(2n) {
+      background-color: var(--bg-card-alt) !important;
+    }
+
+    .markdown-section table tr:hover {
+      background-color: rgba(0, 229, 255, 0.08) !important;
+    }
+
+    /* TABLE CELLS */
+    .markdown-section table td {
+      padding: 14px 18px !important;
+      color: var(--text-main) !important;
+      font-size: 0.95rem !important;
+      border: none !important;
+      border-bottom: 1px solid var(--border-color) !important;
+      vertical-align: middle !important;
+    }
+
+    /* WATCH LINKS (VIBRANT YELLOW GLOW) */
+    .markdown-section table td a[href*="youtu"],
+    .markdown-section table td a[href*="youtube.com"] {
+      color: var(--link-watch) !important;
+      font-weight: 700 !important;
+      text-decoration: none !important;
+      padding: 4px 10px !important;
+      border-radius: 5px !important;
+      background: var(--link-watch-bg) !important;
+      border: 1px solid var(--link-watch-border) !important;
+      display: inline-block !important;
+      white-space: nowrap !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .markdown-section table td a[href*="youtu"]:hover,
+    .markdown-section table td a[href*="youtube.com"]:hover {
+      background: rgba(250, 204, 21, 0.28) !important;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 8px rgba(250, 204, 21, 0.3) !important;
+    }
+
+    /* DOCUMENTATION NOTES LINKS */
+    .markdown-section table td a:not([href*="youtu"]):not([href*="youtube.com"]) {
+      color: var(--link-notes) !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+      padding: 4px 8px !important;
+      border-radius: 4px !important;
+      transition: all 0.2s ease !important;
+    }
+
+    .markdown-section table td a:not([href*="youtu"]):not([href*="youtube.com"]):hover {
+      text-decoration: underline !important;
+      color: var(--theme-color) !important;
+    }
+
+    /* =========================================================
+       FLOATING THEME TOGGLE BUTTON
+       ========================================================= */
+    #theme-toggle-btn {
+      position: fixed;
+      top: 16px;
+      right: 24px;
+      z-index: 9999;
+      background: var(--bg-card);
+      color: var(--text-main);
+      border: 1px solid var(--border-color);
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.2s ease;
+    }
+
+    #theme-toggle-btn:hover {
+      border-color: var(--theme-color);
+      transform: translateY(-1px);
+      box-shadow: 0 6px 18px rgba(0, 229, 255, 0.25);
+    }
+
+    /* YOUTUBE EMBED CARDS */
     .yt-card {
       display: inline-block;
       padding: 12px 24px;
-      background: #ff0000;
+      background: #dc2626;
       color: #ffffff !important;
       border-radius: 8px;
       font-weight: bold;
       text-decoration: none !important;
       margin: 15px 0;
-      box-shadow: 0 4px 14px rgba(255, 0, 0, 0.4);
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
     }
     .yt-card:hover {
-      background: #cc0000;
+      background: #b91c1c;
     }
   </style>
 </head>
-<body>
+<body class="theme-dark">
+  <!-- Floating Theme Switcher -->
+  <button id="theme-toggle-btn" onclick="toggleTheme()" title="Switch between Bluish Dark & Soothing Off-White">
+    <span id="theme-icon">🌙</span> <span id="theme-text">Bluish Dark</span>
+  </button>
+
   <div id="app">Loading Femto Physics Documentation...</div>
+
   <script>
+    // Theme Switcher Logic
+    function applyTheme(theme) {
+      if (theme === 'light') {
+        document.body.classList.remove('theme-dark');
+        document.body.classList.add('theme-light');
+        document.getElementById('theme-icon').textContent = '☀️';
+        document.getElementById('theme-text').textContent = 'Off-White';
+        localStorage.setItem('femto_theme', 'light');
+      } else {
+        document.body.classList.remove('theme-light');
+        document.body.classList.add('theme-dark');
+        document.getElementById('theme-icon').textContent = '🌙';
+        document.getElementById('theme-text').textContent = 'Bluish Dark';
+        localStorage.setItem('femto_theme', 'dark');
+      }
+    }
+
+    function toggleTheme() {
+      const current = localStorage.getItem('femto_theme') || 'dark';
+      applyTheme(current === 'dark' ? 'light' : 'dark');
+    }
+
+    // Initialize Theme
+    const savedTheme = localStorage.getItem('femto_theme') || 'dark';
+    applyTheme(savedTheme);
+
+    // Docsify Configuration
     window.$docsify = {
       name: 'Femto Physics',
       repo: 'https://github.com/TheFemtoPhysics/Femto-Physics',
@@ -85,8 +296,9 @@
         errorText: 'Error',
         successText: 'Copied'
       }
-    }
+    };
   </script>
+
   <!-- Docsify Core -->
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
   <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script>
