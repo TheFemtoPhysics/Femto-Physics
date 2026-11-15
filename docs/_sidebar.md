@@ -1,6 +1,6 @@
 <!-- docs/_sidebar.md -->
 
-* **[🏠 Home / Channel Overview](README.md)**
+* **[🏠 Home / Master Directory](README.md)**
 * **[👤 Producer & Production Team](producer.md)**
 
 * **⚛️ Interactive Simulations**
@@ -19,6 +19,7 @@
   * [Episode 10: Fusion Ignition ($Q > 1$)](ep10-fusion-ignition-net-gain.md)
   * [Episode 11: Thorium Molten Salt Reactor](ep11-thorium-molten-salt-reactor.md)
   * [Episode 12: Direct Fusion Energy (Helion FRC)](ep12-direct-fusion-energy-helion.md)
+  * [Episode 13: Strange Stars & Strangelets](ep13-strangelets-and-strange-stars.md)
 
 * **⚡ YouTube Shorts**
   * [Short 1: 1972 French Uranium Mystery](short01-french-mystery.md)
@@ -28,5 +29,4 @@
 
 * **🤝 Community & Collaboration**
   * [Propose Episode Ideas / PRs](contributing.md)
-  * [YouTube Channel [@FemtoPhysics](https://www.youtube.com/@FemtoPhysics)](https://www.youtube.com/@FemtoPhysics)
-  * [Episode 13: Strange Stars & Strangelets](ep13-strangelets-and-strange-stars.md)
+  * [Official YouTube Channel [@FemtoPhysics](https://www.youtube.com/@FemtoPhysics)](https://www.youtube.com/@FemtoPhysics)
